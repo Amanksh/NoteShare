@@ -6,7 +6,7 @@ export const Navbar = () => {
   const { user, loginWithRedirect, logout, isAuthenticated } = useAuth0();
   console.log(user);
   return (
-    <div className=" navbar w-[90%] mx-auto rounded-lg  shadow-sm">
+    <div className=" navbar w-[90%] mx-auto rounded-lg  shadow-lg">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -45,7 +45,7 @@ export const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal gap-2 px-1">
-          <NavLink to={"/notes"} className="btn btn-dash rounded-md">
+          <NavLink to={"/notes"} className="btn btn-dash rounded-md ">
             Notes
           </NavLink>
           <NavLink to={"/books"} className="btn btn-dash  rounded-md">
@@ -72,7 +72,7 @@ export const Navbar = () => {
           </>
         ) : (
           <button
-            className="btn btn-outline btn-accent"
+            className="btn btn-outline "
             onClick={() => loginWithRedirect()}
           >
             Login

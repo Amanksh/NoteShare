@@ -5,3 +5,9 @@
 @plugin "tailwindcss-animate";
 
 @custom-variant dark (&:is(.dark *));
+
+.btn:hover {
+  background-color: #2f27ce;
+  color: white;
+  /* Change this to your desired color */
+}
