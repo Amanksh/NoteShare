@@ -1,5 +1,4 @@
-import { Button } from "./ui/button";
-
+import Button from "./ui/button";
 const Home = () => {
   return (
     <div className="">
@@ -13,7 +12,7 @@ const Home = () => {
           materials, collaborate with peers, and enhance your knowledge—all in
           one place!
         </p>
-        <Button className="px-10 mt-2 btn btn-outline">Join</Button>
+        <Button text={"Contribute"} to="/upload" />
       </div>
     </div>
   );

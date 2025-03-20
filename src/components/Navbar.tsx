@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export const Navbar = () => {
   const { user, loginWithRedirect, logout, isAuthenticated } = useAuth0();
-  console.log(user);
+
   return (
     <div className=" navbar w-[90%] mx-auto rounded-lg  shadow-lg">
       <div className="navbar-start">
@@ -59,10 +59,12 @@ export const Navbar = () => {
       <div className="navbar-end gap-2">
         {isAuthenticated ? (
           <>
-            <Avatar>
-              <AvatarImage src={user?.picture} alt="@shadcn" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
+            <NavLink to={"/profile"}>
+              <Avatar>
+                <AvatarImage src={user?.picture} alt="@shadcn" />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+            </NavLink>
             <button
               className="btn btn-outline btn-error"
               onClick={() => logout()}
