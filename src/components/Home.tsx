@@ -1,4 +1,4 @@
-import Button from "./ui/button";
+import { Button } from "@/components/ui/button";
 const Home = () => {
   return (
     <div className="">
@@ -12,7 +12,9 @@ const Home = () => {
           materials, collaborate with peers, and enhance your knowledge—all in
           one place!
         </p>
-        <Button text={"Contribute"} to="/upload" />
+        <Button variant={"outline"} className="btn btn-ghost text-black">
+          Contribute
+        </Button>
       </div>
     </div>
   );

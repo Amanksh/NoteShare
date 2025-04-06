@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth0 } from "@auth0/auth0-react";
+import UploadModal from "./ui/UploadModal";
 
 export const Navbar = () => {
   const { user, loginWithRedirect, logout, isAuthenticated } = useAuth0();
@@ -41,7 +42,10 @@ export const Navbar = () => {
             </NavLink>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">NoteShare</a>
+
+        <NavLink to={"/"} className="hidden md:flex btn btn-ghost text-xl">
+          NoteShare
+        </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal gap-2 px-1">
@@ -59,6 +63,7 @@ export const Navbar = () => {
       <div className="navbar-end gap-2">
         {isAuthenticated ? (
           <>
+            <UploadModal />
             <NavLink to={"/profile"}>
               <Avatar>
                 <AvatarImage src={user?.picture} alt="@shadcn" />

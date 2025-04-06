@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Label } from "./ui/label";
 
 const Profile = () => {
