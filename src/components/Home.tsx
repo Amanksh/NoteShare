@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { NavLink } from "react-router-dom";
 const Home = () => {
   return (
     <div className="">
@@ -13,7 +14,7 @@ const Home = () => {
           one place!
         </p>
         <Button variant={"outline"} className="btn btn-ghost text-black">
-          Contribute
+          <NavLink to={"/notes"}>Contribute</NavLink>
         </Button>
       </div>
     </div>

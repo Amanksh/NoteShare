@@ -34,12 +34,12 @@ export default function FileCard({ file }: FileCardProps) {
   const formattedDate = new Date(file.uploadedAt).toLocaleString();
 
   return (
-    <Card className="w-full max-w-md shadow-xl border border-gray-200">
+    <Card className="w-full max-w-sm shadow-xl border border-gray-200 ">
       <CardHeader className="flex items-center gap-3">
         <FileText className="text-blue-600" size={28} />
         <div className="space-y-1">
           <CardTitle className="text-lg font-semibold">
-            {file.originalName}
+            {file.fileName}
           </CardTitle>
           <p className="text-sm text-muted-foreground">
             {file.course} — Sem {file.semester}
@@ -66,10 +66,7 @@ export default function FileCard({ file }: FileCardProps) {
           rel="noopener noreferrer"
           className="w-full"
         >
-          <Button
-            variant="outline"
-            className="w-full flex justify-center gap-2"
-          >
+          <Button className="w-full flex justify-center gap-2 hover:bg-[#341d9b]">
             <Download size={16} />
             Download
           </Button>

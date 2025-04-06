@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import {
   Dialog,
@@ -11,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "react-hot-toast";
+import { Progress } from "@radix-ui/react-progress";
 import {
   Select,
   SelectContent,
@@ -25,6 +27,8 @@ export default function UploadModal() {
   const [fileName, setFilename] = useState("");
   const [course, setCourse] = useState("");
   const [semester, setSemester] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [progress, setProgress] = useState(0);
 
   const handleUpload = async () => {
     if (!file || !fileName || !course || !semester) {
@@ -44,25 +48,38 @@ export default function UploadModal() {
     formData.append("course", course);
     formData.append("semester", semester);
 
+    setUploading(true);
+    setProgress(0);
     try {
-      const res = await fetch("http://localhost:8000/notes", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await res.json();
-      console.log(data);
+      const response = await axios.post(
+        "https://notes-api-1wbs.onrender.com/notes",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          onUploadProgress: (progressEvent) => {
+            const percent = Math.round(
+              (progressEvent.loaded * 100) / (progressEvent.total || 1)
+            );
+            setProgress(percent);
+          },
+        }
+      );
+      const data = response.data;
       if (data.fileUrl) {
         console.log(data);
         toast.success("Uploaded Successfully!");
         setIsOpen(false);
         resetForm();
       } else {
-        toast.error("Upload failed");
+        toast.error(data.error);
       }
     } catch (err) {
       console.error(err);
       toast.error("Error uploading file");
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -132,10 +149,18 @@ export default function UploadModal() {
               </SelectContent>
             </Select>
           </div>
+          {uploading && (
+            <div className="mt-2">
+              <Progress value={progress} className="h-2" />
+              <p className="text-sm text-gray-500 mt-1">{progress}% uploaded</p>
+            </div>
+          )}
         </div>
 
         <DialogFooter>
-          <Button onClick={handleUpload}>Upload</Button>
+          <Button onClick={handleUpload} disabled={uploading || !file}>
+            {uploading ? "Uploading..." : "Upload"}
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

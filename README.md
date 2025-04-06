@@ -61,6 +61,7 @@ git commit -m "Add feature-name"
 ```
 
 4. Push to your branch:
+   git
 
 ```bash
 git push origin feature-name

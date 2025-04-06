@@ -7,7 +7,7 @@
 @custom-variant dark (&:is(.dark *));
 
 .btn:hover {
-  background-color: #2f27ce;
+  background-color: #341d9b;
   color: white;
   /* Change this to your desired color */
 }
