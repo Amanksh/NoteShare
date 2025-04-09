@@ -1,6 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { NavLink } from "react-router-dom";
+import { filesAtom } from "@/store/atoms/filesAtom";
+import { useAtomValue } from "jotai";
+import FileCard from "./ui/FileCard";
 const Home = () => {
+  const files = useAtomValue(filesAtom);
   return (
     <div className="">
       <div className="mx-auto mt-20 flex gap-5 flex-col items-center justify-center p-10 w-[80%]">
@@ -21,6 +25,11 @@ const Home = () => {
         <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight lg:text-5xl">
           Recently Added
         </h1>
+        <div className="p-5 flex flex-wrap   justify-center gap-5">
+          {files.map((file, index) => (
+            <FileCard file={file} key={index} />
+          ))}
+        </div>
       </div>
     </div>
   );
