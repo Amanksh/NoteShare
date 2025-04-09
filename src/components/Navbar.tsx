@@ -44,6 +44,9 @@ export const Navbar = () => {
         </div>
 
         <NavLink to={"/"} className="hidden md:flex btn btn-ghost text-xl">
+          <div className="w-10 rounded-lg">
+            <img src="/icon.svg" alt="" className="rounded-lg" />
+          </div>
           NoteShare
         </NavLink>
       </div>
